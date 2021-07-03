@@ -1,30 +1,103 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
+.body {
+  background-image: linear-gradient(135deg,
+    #00B7D4, #505488, #2F3F80, #161569,
+    #5A4894, #A950A1, #FF7CAE
+
+
+  );
+  background-size: 500%;
+  animation: fanimado 10s infinite;
+  width: 100vw;
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.font {
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.fontTitle {
+  font-size: 38px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.containerHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid #fff;
+  border-radius: 20px; */
+  
+  
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.inputs {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.containerInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.opacity {
+  color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #fff;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0px 0px 3px 3px;
+  
+}
+
+.titleLogin {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes fanimado {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
+/* .App-link {
   color: #61dafb;
 }
 
@@ -35,4 +108,8 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+
