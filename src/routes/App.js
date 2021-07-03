@@ -13,6 +13,7 @@ const App = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/usuarios" component={Users} />
       {/* <Route exact path="/crear" component={} /> */}
+      <Route path="**" render={() => <h1>404 NOT FOUND</h1>} />
     </Switch>
   </BrowserRouter>
 )

@@ -35,6 +35,11 @@
   color: #fff;
 }
 
+.fontTitleRows {
+  font-family: 'Poppins', sans-serif;
+
+}
+
 .containerHome {
   display: flex;
   justify-content: center;
@@ -73,17 +78,21 @@
 }
 
 .opacity {
-  color: rgba(255, 255, 255, 0.7);
-  border: 2px solid #fff;
+  color: rgba(255, 255, 255);
+  /* border: 1px solid #fff; */
   border-radius: 20px;
-  width: 400px;
+  width: 350px;
   box-shadow: 0px 0px 3px 3px;
+  background-color: rgba(255, 255, 255, 0.3)
+  
   
 }
 
 .titleLogin {
   text-align: center;
 }
+
+
 
 @keyframes fanimado {
   0% {

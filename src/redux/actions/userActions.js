@@ -1,4 +1,4 @@
-import { SET_TOKEN, SET_USER_DATA } from "../constants/action-types";
+import { SET_TOKEN, SET_USERS, SET_USER_DATA } from "../constants/action-types";
 import axios from 'axios';
 import { urls } from "../../api/urls";
 
@@ -12,12 +12,17 @@ export const setToken = token => ({
     token
 })
 
+export const setUsers = users => ({
+    type: SET_USERS,
+    users
+})
+
 export const loginAction = data => {
     return async (dispatch) => {
 
         try {
+            let status = '';
             const response = await axios.post(`${urls.login}`, data)
-            
             console.log('response data => ', response.data);
             console.log('response token => ', response.data.token)
 
@@ -25,11 +30,10 @@ export const loginAction = data => {
                 console.log('hay token!')
                 dispatch(setToken(response.data.token))
                 dispatch(setUserData(data))
-            } else {
-                return {
-                    message: 'Error en autenticacion, intente nuevamente'
-                }
+                status = true;
             }
+
+            return status;
 
             
         } catch (error) {
@@ -39,5 +43,23 @@ export const loginAction = data => {
             
         }
 
+    }
+}
+
+export const getListAction = token => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get(`${urls.getList}`, {
+                headers: {'Authorization': `${token}`}
+            })
+        
+            if (response.data.data.length !== 0){
+                dispatch(setUsers(response.data.data))
+            } else {
+                dispatch(setUsers([]))
+            }
+        } catch (error) {
+            console.error(error.code)
+        }
     }
 }

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import {useSelector} from 'react-redux'
+import React from "react";
+import { useSelector } from "react-redux";
 import "../App.css";
-import ButtonComponent from "../components/Button/ButtonComponent";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
+import {Link} from 'react-router-dom'
 
 const Home = (props) => {
-  const { userData } = useSelector((state) => state.userReducer)
+  const { userData } = useSelector((state) => state.userReducer);
 
-  const { users } = useSelector((state) => state.userReducer);
+  
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -23,32 +23,35 @@ const Home = (props) => {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    console.log("userData from redux => ", userData);
-    console.log("props => ", props);
-  }, []);
+  
+
+  const signOut = () => {
+    window.location.reload();
+  }
 
   return (
     <div className="body">
-
       <div className="containerHome">
-
-        {
-          Object.keys(userData).length !== 0 && (
-            <div style={{ display: "flex", justifyContent: "flex-end", width: '100%', height: '20%', padding: 20 }}>
-              <div>
-                <i class="fas fa-user-circle fa-3x"></i>
-              </div>
-              <div>
-                <p> {userData.email} </p>
-              </div>
+        {Object.keys(userData).length !== 0 && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              height: "20%",
+              padding: 20,
+            }}
+          >
+            <div>
+              <i style={{color: '#fff'}} className="fas fa-user-circle fa-2x"></i>
             </div>
-          )
-        }
+            <div>
+              <h5 className="font"> Welcome, {userData.email} </h5>
+            </div>
+          </div>
+        )}
 
-
-        <div style={{width: '100%', height: '80%'}}>
-
+        <div style={{ width: "100%", height: "80%" }}>
           {/* <div>
             <i class="fas fa-users fa-5x"></i>
           </div> */}
@@ -75,11 +78,26 @@ const Home = (props) => {
               onClose={handleClose}
               TransitionComponent={Fade}
             >
-              <MenuItem onClick={() => props.history.push("/login")}>
-                LogIn
-              </MenuItem>
-              {/* <MenuItem onClick={handleClose}>List Users</MenuItem>
-              <MenuItem onClick={handleClose}>Create User</MenuItem> */}
+
+              {Object.keys(userData).length !== 0 ? (
+                <>
+                  <MenuItem onClick={() => signOut()}>
+                    SignOut
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <Link style={{textDecoration: 'none'}} to="/usuarios">
+                      Users
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>Create</MenuItem>
+                </>
+              ) : (
+                <MenuItem onClick={() => props.history.push("/login")}>
+                  LogIn
+                </MenuItem>
+
+              )
+            }
             </Menu>
           </div>
         </div>
