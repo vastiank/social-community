@@ -4,20 +4,17 @@ import { loginAction } from "../../redux/actions/userActions";
 import "../../App.css";
 import Button from "@material-ui/core/Button";
 import Swal from "sweetalert2";
-import {withRouter} from 'react-router-dom' 
+import { withRouter } from "react-router-dom";
 const LoginForm = (props) => {
   const dispatch = useDispatch();
 
-  //State user
   const initialState = {
     email: "",
     password: "",
   };
 
-  //useState hook
   const [state, setState] = useState(initialState);
 
-  //handleChange controller
   const handleChange = (e) => {
     setState({
       ...state,
@@ -25,12 +22,11 @@ const LoginForm = (props) => {
     });
   };
 
-  //Login method
   const login = () => {
     if (state.email !== "" && state.password !== "") {
       dispatch(loginAction(state)).then((resp) => {
         if (resp !== undefined) {
-          props.history.push("/Home");
+          props.props.history.push("/home");
         } else {
           Swal.fire({
             icon: "error",
@@ -45,8 +41,6 @@ const LoginForm = (props) => {
   };
 
   
-
-
 
   return (
     <div className="opacity">
@@ -90,4 +84,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default withRouter(LoginForm);
+export default LoginForm;

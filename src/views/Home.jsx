@@ -85,11 +85,16 @@ const Home = (props) => {
                     SignOut
                   </MenuItem>
                   <MenuItem onClick={handleClose}>
-                    <Link style={{textDecoration: 'none'}} to="/usuarios">
+                    <Link style={{textDecoration: 'none', color: '#000'}} to="/usuarios">
                       Users
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>Create</MenuItem>
+
+                  <MenuItem onClick={handleClose}>
+                    <Link style={{textDecoration: 'none', color: '#000'}} to="/crear">
+                      Create
+                    </Link>
+                  </MenuItem>
                 </>
               ) : (
                 <MenuItem onClick={() => props.history.push("/login")}>

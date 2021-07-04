@@ -63,3 +63,23 @@ export const getListAction = token => {
         }
     }
 }
+
+export const createUser = (data, token) => {
+    return async (dispatch) => {
+        try {
+
+            const response = await axios.post(`${urls.createUser}`, data, {
+                headers: {'Authorization': `${token}`}
+            })
+
+            
+
+            return response.data
+            
+        } catch (error) {
+
+            console.error(`${error.code} - ${error.message}`)
+            
+        }
+    }
+}
