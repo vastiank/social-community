@@ -1,13 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "../App.css";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
 import { Link } from "react-router-dom";
+import { setUserData } from "../redux/actions/userActions";
 
 const Home = (props) => {
+
+  const dispatch = useDispatch()
+
   const { userData } = useSelector((state) => state.userReducer);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,7 +26,9 @@ const Home = (props) => {
   };
 
   const signOut = () => {
+    dispatch(setUserData([]))
     window.location.reload();
+
   };
 
   return (
