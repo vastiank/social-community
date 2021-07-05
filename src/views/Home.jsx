@@ -5,12 +5,10 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Home = (props) => {
   const { userData } = useSelector((state) => state.userReducer);
-
-  
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -23,11 +21,9 @@ const Home = (props) => {
     setAnchorEl(null);
   };
 
-  
-
   const signOut = () => {
     window.location.reload();
-  }
+  };
 
   return (
     <div className="body">
@@ -43,7 +39,10 @@ const Home = (props) => {
             }}
           >
             <div>
-              <i style={{color: '#fff'}} className="fas fa-user-circle fa-2x"></i>
+              <i
+                style={{ color: "#fff" }}
+                className="fas fa-user-circle fa-2x"
+              ></i>
             </div>
             <div>
               <h5 className="font"> Welcome, {userData.email} </h5>
@@ -51,59 +50,75 @@ const Home = (props) => {
           </div>
         )}
 
-        <div style={{ width: "100%", height: "80%" }}>
-          {/* <div>
-            <i class="fas fa-users fa-5x"></i>
-          </div> */}
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
 
-          <div className="center">
-            <h1 className="fontTitle">Social Community</h1>
-          </div>
+         
 
-          <div className="center">
-            <Button
-              variant="contained"
-              color="secondary"
-              aria-controls="fade-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <strong className="font">Choose an option</strong>
-            </Button>
-            <Menu
-              id="fade-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={open}
-              onClose={handleClose}
-              TransitionComponent={Fade}
-            >
+          <div className="opacity" style={{padding: 20}}>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+              <i class="fas fa-users fa-5x text-white"></i>
+            </div>
+            <div className="center">
+              <h5 className="fontTitle">Social Community</h5>
+            </div>
 
-              {Object.keys(userData).length !== 0 ? (
-                <>
-                  <MenuItem onClick={() => signOut()}>
-                    SignOut
+            <hr />
+
+            <div className="center">
+              <Button
+                variant="contained"
+                color="secondary"
+                aria-controls="fade-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <strong className="font">Choose an option</strong>
+              </Button>
+              <Menu
+                id="fade-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+              >
+                {Object.keys(userData).length !== 0 ? (
+                  <>
+                    <MenuItem onClick={() => signOut()}>SignOut</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "#000" }}
+                        to="/usuarios"
+                      >
+                        Users
+                      </Link>
+                    </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                      <Link
+                        style={{ textDecoration: "none", color: "#000" }}
+                        to="/crear"
+                      >
+                        Create
+                      </Link>
+                    </MenuItem>
+                  </>
+                ) : (
+                  <MenuItem onClick={() => props.history.push("/login")}>
+                    LogIn
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    <Link style={{textDecoration: 'none', color: '#000'}} to="/usuarios">
-                      Users
-                    </Link>
-                  </MenuItem>
-
-                  <MenuItem onClick={handleClose}>
-                    <Link style={{textDecoration: 'none', color: '#000'}} to="/crear">
-                      Create
-                    </Link>
-                  </MenuItem>
-                </>
-              ) : (
-                <MenuItem onClick={() => props.history.push("/login")}>
-                  LogIn
-                </MenuItem>
-
-              )
-            }
-            </Menu>
+                )}
+              </Menu>
+            </div>
           </div>
         </div>
       </div>

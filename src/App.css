@@ -30,7 +30,7 @@
 }
 
 .fontTitle {
-  font-size: 38px;
+  /* font-size: 24px; */
   font-family: 'Poppins', sans-serif;
   color: #fff;
 }
@@ -87,6 +87,8 @@
   
   
 }
+
+
 
 .titleLogin {
   text-align: center;

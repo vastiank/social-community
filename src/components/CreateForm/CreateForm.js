@@ -23,10 +23,8 @@ const CreateForm = (props) => {
   };
 
   const createNewUser = () => {
-    console.log("state => ", state);
     if (state.name !== "" && state.job !== "") {
       dispatch(createUser(state)).then((resp) => {
-        console.log("response in view => ", resp);
         Swal.fire({
           icon: "success",
           title: "That's Great",

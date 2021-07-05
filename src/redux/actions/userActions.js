@@ -23,11 +23,8 @@ export const loginAction = data => {
         try {
             let status = '';
             const response = await axios.post(`${urls.login}`, data)
-            console.log('response data => ', response.data);
-            console.log('response token => ', response.data.token)
 
             if (response.data.token){
-                console.log('hay token!')
                 dispatch(setToken(response.data.token))
                 dispatch(setUserData(data))
                 status = true;
